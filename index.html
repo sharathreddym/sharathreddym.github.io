@@ -1,26 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sharath Reddy | Portfolio</title>
+  <!-- ====== SITE SETTINGS (EDIT THESE) ====== -->
+  <meta charset="utf-8" />
+  <title>Sharath Reddy — Portfolio</title>
+  <meta name="description" content="Data Analyst/Engineer portfolio — Power BI, Azure, Python, SQL, Snowflake." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://sharathreddym.github.io/">
+  <meta property="og:title" content="Sharath Reddy — Portfolio" />
+  <meta property="og:description" content="Projects, skills, resume, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sharathreddym.github.io/" />
+
+  <!-- ====== BASE STYLES (NO EDIT NEEDED) ====== -->
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    h1 { color: #0078d7; }
-    a { color: #444; }
+    :root{
+      --bg:#0b0c10; --card:#0f1117; --muted:#9aa4b2; --text:#e6e9ef; --brand:#4f8cff; --accent:#22c55e;
+      --max:1040px; --radius:16px; --shadow:0 6px 24px rgba(0,0,0,.25);
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7f7fb; --card:#ffffff; --text:#0b0c10; --muted:#556070; --brand:#2459ff; }
+      body{background:var(--bg);}
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max);margin:auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:10px 0 28px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{display:grid;place-items:center;width:44px;height:44px;background:linear-gradient(135deg,var(--brand),#8ab4ff);border-radius:50%;color:white;font-weight:700;box-shadow:var(--shadow)}
+    nav a{margin-left:16px;font-weight:600}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:center}
+    .hero .card{background:var(--card);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    h1{font-size:40px;line-height:1.1;margin:0 0 8px}
+    .tag{color:var(--muted);margin-top:6px}
+    .pill{display:inline-flex;gap:8px;align-items:center;background:#1c2333;color:#cfe1ff;padding:8px 12px;border-radius:999px;font-size:14px}
+    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-block;background:var(--brand);color:white;padding:10px 16px;border-radius:10px;font-weight:700;box-shadow:var(--shadow)}
+    .btn.alt{background:transparent;border:1px solid var(--muted);color:var(--text)}
+    section{margin:34px 0}
+    .grid{display:grid;gap:18px}
+    .grid.cards{grid-template-columns:repeat(12,1fr)}
+    .card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .project{grid-column:span 6}
+    .skill{grid-column:span 3}
+    .meta{font-size:14px;color:var(--muted)}
+    .list{margin:0;padding-left:18px}
+    footer{margin:40px 0 10px;color:var(--muted);text-align:center}
+    /* responsive */
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .project{grid-column:span 12} .skill{grid-column:span 6} }
+    @media (max-width:520px){ nav{display:none} .skill{grid-column:span 12} h1{font-size:32px} }
   </style>
 </head>
 <body>
-  <h1>Hi, I'm Sharath Reddy 👋</h1>
-  <p>Data Analyst / Engineer | Power BI | Azure | Python | SQL | Snowflake</p>
-  <p>📧 <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-  <p>🔗 <a href="https://www.linkedin.com/in/yourlinkedin/">LinkedIn</a> |
-     <a href="https://github.com/sharathreddy">GitHub</a></p>
-  <hr>
-  <h2>Projects</h2>
-  <ul>
-    <li><strong>Integrated Proteins Analytics Dashboard</strong> – Power BI & Snowflake data insights</li>
-    <li><strong>RSA Similarity Assist</strong> – FastAPI + LLM project for requirement analysis</li>
-  </ul>
+  <div class="wrap">
+    <!-- ====== NAV ====== -->
+    <header>
+      <div class="brand">
+        <div class="logo">SR</div>
+        <div>
+          <strong>Sharath Reddy</strong><br>
+          <span class="meta">Data Analyst / Engineer</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="home">
+      <div class="card">
+        <span class="pill">🔎 Power BI · Azure · Python · SQL · Snowflake</span>
+        <h1>Turning raw data into decisions.</h1>
+        <p class="tag">I design reliable data pipelines and build clear dashboards. Currently focused on lakehouse patterns, BI analytics, and LLM-assisted requirement analysis.</p>
+        <div class="cta">
+          <a class="btn" href="mailto:you@example.com">Contact Me</a>
+          <a class="btn alt" href="resume.pdf" target="_blank" rel="noopener">View Resume (PDF)</a>
+          <a class="btn alt" href="https://github.com/sharathreddym" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn alt" href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Quick Stats</h3>
+        <ul class="list">
+          <li>Built multi-stage ADF/Databricks pipelines for real-time analytics</li>
+          <li>Delivered executive Power BI dashboards (Snowflake, Synapse)</li>
+          <li>Automated data quality checks and SCD merges</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====== PROJECTS ====== -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid cards">
+        <article class="card project">
+          <h3>Integrated Proteins Analytics</h3>
+          <p>Shipment & rail analytics with Power BI on Snowflake; tasks for ingestion, transformations (Bronze→Silver→Gold), and KPI dashboards.</p>
+          <p class="meta">Power BI · Snowflake · SQL · DAX</p>
+          <p><a href="#" target="_blank" rel="noopener">Repo / Demo</a></p>
+        </article>
+
+        <article class="card project">
+          <h3>Requirement Similarity Assist (RSA)</h3>
+          <p>FastAPI service using vector search + LLM prompts to compare requirements and generate structured diffs for engineering teams.</p>
+          <p class="meta">FastAPI · Embeddings · LLM · Python</p>
+          <p><a href="#" target="_blank" rel="noopener">Repo / Demo</a></p>
+        </article>
+
+        <article class="card project">
+          <h3>Data Lakehouse Modernization</h3>
+          <p>Implemented event-driven pipelines, partition optimization, and CI/CD; cut load time by 50% and enabled near real-time BI.</p>
+          <p class="meta">ADF · Databricks · Kafka · Terraform</p>
+          <p><a href="#" target="_blank" rel="noopener">Case Study</a></p>
+        </article>
+
+        <article class="card project">
+          <h3>Marketing Analytics Toolkit</h3>
+          <p>Reusable dbt models and dashboards for campaign attribution and cohort LTV; plug-and-play with Snowflake.</p>
+          <p class="meta">dbt · Snowflake · Power BI</p>
+          <p><a href="#" target="_blank" rel="noopener">Repo / Demo</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====== SKILLS ====== -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="grid cards">
+        <div class="card skill"><strong>Data Engineering</strong><br><span class="meta">ADF, Databricks, Airflow, Kafka, Terraform</span></div>
+        <div class="card skill"><strong>Databases</strong><br><span class="meta">Snowflake, Synapse, Postgres, SQL Server</span></div>
+        <div class="card skill"><strong>Analytics & BI</strong><br><span class="meta">Power BI, DAX, modeling, KPI design</span></div>
+        <div class="card skill"><strong>Programming</strong><br><span class="meta">Python (Pandas, FastAPI), SQL, Git</span></div>
+      </div>
+    </section>
+
+    <!-- ====== EXPERIENCE ====== -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="card">
+        <strong>Data Analyst — Integrated Proteins</strong> · <span class="meta">Kansas City · 2025–Present</span>
+        <ul class="list">
+          <li>Built Snowflake tasks & Power BI dashboards for rail logistics KPIs.</li>
+          <li>Automated ingestion via Graph API; standardized Bronze/Silver/Gold layers.</li>
+          <li>Reduced refresh time by optimizing partitions & query patterns.</li>
+        </ul>
+        <hr>
+        <strong>Data Analyst — Sodexo</strong> · <span class="meta">2024–2025</span>
+        <ul class="list">
+          <li>Developed operational dashboards and ad-hoc analysis in Power BI.</li>
+          <li>Wrote SQL for data cleaning, joins, and KPI calculations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener">/in/your-linkedin</a></p>
+        <p>GitHub: <a href="https://github.com/sharathreddym" target="_blank" rel="noopener">@sharathreddym</a></p>
+        <p>Or use: <a href="mailto:you@example.com?subject=Portfolio%20Inquiry">Quick mail link</a></p>
+      </div>
+    </section>
+
+    <footer>© <span id="y"></span> Sharath Reddy · Built with GitHub Pages</footer>
+  </div>
+
+  <script>
+    // tiny JS to set year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
