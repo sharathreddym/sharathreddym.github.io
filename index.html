@@ -609,6 +609,7 @@
     .contact-card:nth-child(2) { border-color: rgba(59, 130, 246, 0.2); }
     .contact-card:nth-child(3) { border-color: rgba(139, 92, 246, 0.2); }
     .contact-card:nth-child(4) { border-color: rgba(6, 182, 212, 0.2); }
+    .contact-card:nth-child(5) { border-color: rgba(249, 115, 22, 0.2); }
 
     .contact-card:hover {
       transform: translateY(-5px);
@@ -636,6 +637,12 @@
       border-color: rgba(6, 182, 212, 0.6);
       box-shadow: 0 20px 60px rgba(6, 182, 212, 0.3);
       background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(59, 130, 246, 0.15));
+    }
+
+    .contact-card:nth-child(5):hover {
+      border-color: rgba(249, 115, 22, 0.6);
+      box-shadow: 0 20px 60px rgba(249, 115, 22, 0.3);
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(236, 72, 153, 0.15));
     }
 
     .contact-icon {
@@ -960,8 +967,14 @@
       <div class="contact-grid">
         <a href="mailto:sharathreddy3015@gmail.com" class="contact-card">
           <div class="contact-icon">📧</div>
-          <h3>Email</h3>
+          <h3>Personal Email</h3>
           <p>sharathreddy3015@gmail.com</p>
+        </a>
+
+        <a href="mailto:sharath@sharathreddy.in" class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <h3>Professional Email</h3>
+          <p>sharath@sharathreddy.in</p>
         </a>
 
         <a href="https://www.linkedin.com/in/reddysm/" target="_blank" rel="noopener" class="contact-card">
