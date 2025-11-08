@@ -145,7 +145,36 @@
 
     .hero-content {
       max-width: 1200px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      text-align: left;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-image {
+      flex-shrink: 0;
+    }
+
+    .profile-pic {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid transparent;
+      background: var(--gradient-2);
+      padding: 6px;
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+      transition: all 0.4s ease;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 25px 80px rgba(59, 130, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.3);
     }
 
     .hero-tag {
@@ -557,6 +586,21 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+      .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .profile-pic {
+        width: 200px;
+        height: 200px;
+      }
+
       .hero h1 {
         font-size: 2.5rem;
       }
@@ -637,16 +681,21 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
       <div class="hero-content">
-        <div class="hero-tag">🤖 Technical Lead, AI/ML Development</div>
-        <h1>Sarath Chandra Mandadi</h1>
-        <div class="typing-text" id="typingText"><span class="cursor"></span></div>
-        <p class="hero-description">
-          Leading the development of Generative AI solutions leveraging NLP, Large Language Models, and AI/ML technologies.
-          Specialized in building AI-driven tools that enhance developer productivity and accelerate innovation.
-        </p>
-        <div class="cta-buttons">
-          <a href="#contact" class="btn btn-primary">Get In Touch</a>
-          <a href="#projects" class="btn btn-secondary">View Research</a>
+        <div class="hero-text">
+          <div class="hero-tag">🤖 Technical Lead, AI/ML Development</div>
+          <h1>Sarath Chandra Mandadi</h1>
+          <div class="typing-text" id="typingText"><span class="cursor"></span></div>
+          <p class="hero-description">
+            Leading the development of Generative AI solutions leveraging NLP, Large Language Models, and AI/ML technologies.
+            Specialized in building AI-driven tools that enhance developer productivity and accelerate innovation.
+          </p>
+          <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="#projects" class="btn btn-secondary">View Research</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="profile.jpg" alt="Sarath Chandra Mandadi" class="profile-pic">
         </div>
       </div>
     </section>
