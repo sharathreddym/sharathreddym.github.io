@@ -331,6 +331,12 @@
       gap: 2rem;
     }
 
+    .project-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
     .project-card {
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-light) 100%);
       border-radius: 20px;
@@ -750,6 +756,200 @@
         display: flex;
       }
     }
+
+    /* Demo Modal Styles */
+    .demo-modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .demo-modal.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .demo-modal-content {
+      background: var(--bg-card);
+      border-radius: 20px;
+      width: 95%;
+      height: 90%;
+      max-width: 1400px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 2px solid rgba(236, 72, 153, 0.5);
+      box-shadow: 0 30px 100px rgba(236, 72, 153, 0.4);
+      animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .demo-modal-header {
+      padding: 1.5rem 2rem;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(139, 92, 246, 0.2));
+      border-bottom: 1px solid rgba(236, 72, 153, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .demo-modal-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .demo-modal-close {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 2.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .demo-modal-close:hover {
+      background: rgba(236, 72, 153, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .demo-modal-body {
+      flex: 1;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .demo-modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Demo Card Styles */
+    .demo-card {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-light) 100%);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      cursor: pointer;
+    }
+
+    .demo-card:nth-child(1) { border-color: rgba(236, 72, 153, 0.2); }
+    .demo-card:nth-child(2) { border-color: rgba(59, 130, 246, 0.2); }
+    .demo-card:nth-child(3) { border-color: rgba(139, 92, 246, 0.2); }
+    .demo-card:nth-child(4) { border-color: rgba(6, 182, 212, 0.2); }
+
+    .demo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-1);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .demo-card:nth-child(1)::before { background: var(--gradient-1); }
+    .demo-card:nth-child(2)::before { background: var(--gradient-2); }
+    .demo-card:nth-child(3)::before { background: var(--gradient-3); }
+    .demo-card:nth-child(4)::before { background: var(--gradient-pink-blue); }
+
+    .demo-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .demo-card:hover {
+      transform: translateY(-10px);
+      background: linear-gradient(135deg, var(--bg-card-light) 0%, var(--bg-card) 100%);
+    }
+
+    .demo-card:nth-child(1):hover {
+      box-shadow: var(--shadow-pink);
+      border-color: rgba(236, 72, 153, 0.5);
+    }
+
+    .demo-card:nth-child(2):hover {
+      box-shadow: var(--shadow-blue);
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .demo-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(139, 92, 246, 0.3));
+      border: 1px solid rgba(236, 72, 153, 0.6);
+      border-radius: 50px;
+      color: #f472b6;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+    }
+
+    .demo-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .demo-card p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .demo-modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+      }
+
+      .demo-modal-header {
+        padding: 1rem 1.5rem;
+      }
+
+      .demo-modal-header h2 {
+        font-size: 1.2rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -765,6 +965,7 @@
         <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
         <ul class="nav-links" id="navLinks">
           <li><a href="#home">Home</a></li>
+          <li><a href="#demos">AI Demos</a></li>
           <li><a href="#projects">Research</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#experience">Experience</a></li>
@@ -786,8 +987,8 @@
             Specialized in building AI-driven tools that enhance developer productivity and accelerate innovation.
           </p>
           <div class="cta-buttons">
-            <a href="#contact" class="btn btn-primary">Get In Touch</a>
-            <a href="#projects" class="btn btn-secondary">View Research</a>
+            <a href="#demos" class="btn btn-primary">View AI Demos</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
           </div>
         </div>
         <div class="hero-image">
@@ -796,53 +997,89 @@
       </div>
     </section>
 
+    <!-- AI Demos Section -->
+    <section id="demos" class="fade-in">
+      <h2 class="section-title">AI Demos</h2>
+      <div class="projects-grid">
+        <div class="demo-card" onclick="openDemoModal('Named Entity Recognition', 'https://sharath88-named-entity-recognition-demo.hf.space')">
+          <span class="demo-badge">🚀 Live Demo</span>
+          <h3>Named Entity Recognition</h3>
+          <p>Interactive demo showcasing Named Entity Recognition capabilities using state-of-the-art BERT models. Extract and classify entities from text in real-time.</p>
+          <div class="project-tags">
+            <span class="tag">BERT</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Classification</span>
+          </div>
+        </div>
+
+        <div class="demo-card" onclick="openDemoModal('Named Entity Recognition', 'https://sharath88-named-entity-recognition-demo.hf.space')">
+          <span class="demo-badge">🚀 Live Demo</span>
+          <h3>Named Entity Recognition</h3>
+          <p>Interactive demo showcasing Named Entity Recognition capabilities using state-of-the-art BERT models. Extract and classify entities from text in real-time.</p>
+          <div class="project-tags">
+            <span class="tag">BERT</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Classification</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="fade-in">
       <h2 class="section-title">Research & Publications</h2>
       <div class="projects-grid">
-        <div class="project-card">
-          <h3>AAAI Conference 2020</h3>
-          <p>Published research on "Probing the SpanBERT architecture to interpret scientific domain adaptation challenges for coreference resolution" at the AAAI Conference.</p>
-          <div class="project-tags">
-            <span class="tag">SpanBERT</span>
-            <span class="tag">NLP</span>
-            <span class="tag">Coreference Resolution</span>
-            <span class="tag">Deep Learning</span>
+        <a href="http://star.informatik.rwth-aachen.de/Publications/CEUR-WS/Vol-2831/paper10.pdf" target="_blank" rel="noopener" class="project-card-link">
+          <div class="project-card">
+            <h3>AAAI Conference 2020</h3>
+            <p>Published research on "Probing the SpanBERT architecture to interpret scientific domain adaptation challenges for coreference resolution" at the AAAI Conference.</p>
+            <div class="project-tags">
+              <span class="tag">SpanBERT</span>
+              <span class="tag">NLP</span>
+              <span class="tag">Coreference Resolution</span>
+              <span class="tag">Deep Learning</span>
+            </div>
           </div>
-        </div>
+        </a>
 
-        <div class="project-card">
-          <h3>Springer Publication 2020</h3>
-          <p>Co-authored the chapter "Knowledge Graph from Informal Text: Architecture, Components, Algorithms and Applications" in the book "Applications of Machine Learning."</p>
-          <div class="project-tags">
-            <span class="tag">Knowledge Graphs</span>
-            <span class="tag">NLP</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Text Mining</span>
+        <a href="https://www.springerprofessional.de/applications-of-machine-learning/17953770" target="_blank" rel="noopener" class="project-card-link">
+          <div class="project-card">
+            <h3>Springer Publication 2020</h3>
+            <p>Co-authored the chapter "Knowledge Graph from Informal Text: Architecture, Components, Algorithms and Applications" in the book "Applications of Machine Learning."</p>
+            <div class="project-tags">
+              <span class="tag">Knowledge Graphs</span>
+              <span class="tag">NLP</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Text Mining</span>
+            </div>
           </div>
-        </div>
+        </a>
 
-        <div class="project-card">
-          <h3>Req2Test</h3>
-          <p>Developed a graph-driven test case generation system for domain-specific requirements, automating AI support in software engineering contexts.</p>
-          <div class="project-tags">
-            <span class="tag">Graph Databases</span>
-            <span class="tag">Test Generation</span>
-            <span class="tag">AI/ML</span>
-            <span class="tag">Software Engineering</span>
+        <a href="https://www.researchgate.net/publication/327937300_Req2Test_-_Graph_Driven_Test_Case_Generation_for_Domain_Specific_Requirement" target="_blank" rel="noopener" class="project-card-link">
+          <div class="project-card">
+            <h3>Req2Test</h3>
+            <p>Developed a graph-driven test case generation system for domain-specific requirements, automating AI support in software engineering contexts.</p>
+            <div class="project-tags">
+              <span class="tag">Graph Databases</span>
+              <span class="tag">Test Generation</span>
+              <span class="tag">AI/ML</span>
+              <span class="tag">Software Engineering</span>
+            </div>
           </div>
-        </div>
+        </a>
 
-        <div class="project-card">
-          <h3>NERSE</h3>
-          <p>Named Entity Recognition in Software Engineering as a Service - an innovative tool for extracting entities from software engineering documents.</p>
-          <div class="project-tags">
-            <span class="tag">NER</span>
-            <span class="tag">NLP</span>
-            <span class="tag">API Service</span>
-            <span class="tag">Software Engineering</span>
+        <a href="https://www.researchgate.net/publication/336276481_NERSE_Named_Entity_Recognition_in_Software_Engineering_as_a_Service" target="_blank" rel="noopener" class="project-card-link">
+          <div class="project-card">
+            <h3>NERSE</h3>
+            <p>Named Entity Recognition in Software Engineering as a Service - an innovative tool for extracting entities from software engineering documents.</p>
+            <div class="project-tags">
+              <span class="tag">NER</span>
+              <span class="tag">NLP</span>
+              <span class="tag">API Service</span>
+              <span class="tag">Software Engineering</span>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -1001,6 +1238,19 @@
     <footer>
       <p>&copy; <span id="year"></span> SarathChandra Mandadi. Technical Lead, AI/ML Development.</p>
     </footer>
+  </div>
+
+  <!-- Modal for HuggingFace Demos -->
+  <div id="demoModal" class="demo-modal">
+    <div class="demo-modal-content">
+      <div class="demo-modal-header">
+        <h2 id="demoModalTitle">Demo</h2>
+        <button class="demo-modal-close" onclick="closeDemoModal()">&times;</button>
+      </div>
+      <div class="demo-modal-body">
+        <iframe id="demoModalIframe" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
 
   <!-- Particles.js CDN -->
@@ -1203,6 +1453,41 @@
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
       });
+    });
+
+    // Demo Modal Functions
+    function openDemoModal(title, url) {
+      const modal = document.getElementById('demoModal');
+      const modalTitle = document.getElementById('demoModalTitle');
+      const modalIframe = document.getElementById('demoModalIframe');
+
+      modalTitle.textContent = title;
+      modalIframe.src = url;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDemoModal() {
+      const modal = document.getElementById('demoModal');
+      const modalIframe = document.getElementById('demoModalIframe');
+
+      modal.classList.remove('active');
+      modalIframe.src = '';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on background click
+    document.getElementById('demoModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeDemoModal();
+      }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeDemoModal();
+      }
     });
   </script>
 </body>
