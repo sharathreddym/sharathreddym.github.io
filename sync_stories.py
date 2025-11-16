@@ -14,12 +14,19 @@ def read_stories_from_file(filename='stories.txt'):
         with open(filename, 'r', encoding='utf-8') as f:
             lines = f.readlines()
 
-        # Filter out comments and empty lines
+        # Filter out comments and empty lines, convert URLs to embeds
         stories = []
         for line in lines:
             line = line.strip()
             if line and not line.startswith('#'):
-                stories.append(line)
+                # If it's a Medium URL, convert to embed iframe
+                if line.startswith('http') and 'medium.com' in line:
+                    # Medium embed format
+                    iframe = f'<iframe src="{line}" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>'
+                    stories.append(iframe)
+                else:
+                    # Already an iframe embed code
+                    stories.append(line)
 
         return stories
     except FileNotFoundError:
