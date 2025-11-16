@@ -1947,9 +1947,8 @@
       const translateX = -currentStoryIndex * cardWidth;
       storiesTrack.style.transform = `translateX(${translateX}%)`;
 
-      // Update counter - show position out of total groups
-      const maxIndex = Math.max(0, totalStories - cardsToShow);
-      const currentGroup = Math.floor(currentStoryIndex) + 1;
+      // Update counter - show current group out of total groups
+      const currentGroup = Math.floor(currentStoryIndex / cardsToShow) + 1;
       const totalGroups = Math.ceil(totalStories / cardsToShow);
 
       if (storiesCarouselCounter) {
@@ -1957,6 +1956,7 @@
       }
 
       // Update arrow states
+      const maxIndex = totalStories - cardsToShow;
       if (prevStoryButton) {
         prevStoryButton.classList.toggle('disabled', currentStoryIndex === 0);
       }
@@ -1967,8 +1967,8 @@
 
     function navigateStoriesCarousel(direction) {
       const cardsToShow = getCardsToShow();
-      const maxIndex = Math.max(0, totalStories - cardsToShow);
-      const newIndex = currentStoryIndex + direction;
+      const maxIndex = totalStories - cardsToShow;
+      const newIndex = currentStoryIndex + (direction * cardsToShow);
 
       if (newIndex >= 0 && newIndex <= maxIndex) {
         currentStoryIndex = newIndex;
