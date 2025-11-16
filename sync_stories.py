@@ -47,22 +47,33 @@ def read_stories_from_file(filename='stories.txt'):
         sys.exit(1)
 
 def generate_stories_html(stories):
-    """Generate HTML for Medium stories as clickable cards"""
+    """Generate HTML for Medium stories carousel"""
     if not stories:
-        return """      <div class="stories-grid">
+        return """      <div class="stories-container">
         <p style="text-align: center; color: var(--text-muted);">No stories available yet. Add Medium URLs to stories.txt</p>
       </div>"""
 
-    html_parts = ['      <div class="stories-grid">']
+    html_parts = ['      <div class="stories-container">']
+    html_parts.append('        <div class="stories-carousel-wrapper">')
+    html_parts.append('          <div class="carousel-arrow" id="prevStory" onclick="navigateStoriesCarousel(-1)">‹</div>')
+    html_parts.append('          <div class="stories-grid">')
+    html_parts.append('            <div class="stories-track" id="storiesTrack">')
 
     for story in stories:
-        html_parts.append(f"""        <a href="{story['url']}" target="_blank" rel="noopener" class="story-card-link">
-          <div class="story-card">
-            <h3>{story['title']}</h3>
-            <p>Read on Medium →</p>
-          </div>
-        </a>""")
+        html_parts.append(f"""              <div class="story-card-wrapper">
+                <a href="{story['url']}" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>{story['title']}</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>""")
 
+    html_parts.append('            </div>')
+    html_parts.append('          </div>')
+    html_parts.append('          <div class="carousel-arrow" id="nextStory" onclick="navigateStoriesCarousel(1)">›</div>')
+    html_parts.append('        </div>')
+    html_parts.append(f'        <div class="carousel-counter" id="storiesCarouselCounter">1 / {len(stories)}</div>')
     html_parts.append('      </div>')
 
     return '\n'.join(html_parts)
