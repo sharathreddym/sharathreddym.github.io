@@ -1881,6 +1881,7 @@
     const nextButton = document.getElementById('nextPost');
     const carouselCounter = document.getElementById('carouselCounter');
     const totalPosts = postsTrack ? postsTrack.children.length : 0;
+    let postsAutoPlayInterval = null;
 
     function updateCarousel() {
       if (!postsTrack) return;
@@ -1912,9 +1913,37 @@
       }
     }
 
+    function autoPlayPosts() {
+      // Move to next post, loop back to start if at end
+      currentPostIndex = (currentPostIndex + 1) % totalPosts;
+      updateCarousel();
+    }
+
+    function startPostsAutoPlay() {
+      if (postsAutoPlayInterval) return;
+      postsAutoPlayInterval = setInterval(autoPlayPosts, 1000); // 1 second delay
+    }
+
+    function stopPostsAutoPlay() {
+      if (postsAutoPlayInterval) {
+        clearInterval(postsAutoPlayInterval);
+        postsAutoPlayInterval = null;
+      }
+    }
+
     // Initialize carousel on page load
     if (postsTrack) {
       updateCarousel();
+
+      // Start auto-play
+      startPostsAutoPlay();
+
+      // Pause auto-play on hover
+      const postsContainer = document.querySelector('.linkedin-posts-container');
+      if (postsContainer) {
+        postsContainer.addEventListener('mouseenter', stopPostsAutoPlay);
+        postsContainer.addEventListener('mouseleave', startPostsAutoPlay);
+      }
 
       // Add keyboard navigation
       document.addEventListener('keydown', function(e) {
@@ -1933,6 +1962,7 @@
     const nextStoryButton = document.getElementById('nextStory');
     const storiesCarouselCounter = document.getElementById('storiesCarouselCounter');
     const totalStories = storiesTrack ? storiesTrack.children.length : 0;
+    let storiesAutoPlayInterval = null;
 
     // Calculate how many cards to show at once (3 on desktop, 1 on mobile)
     function getCardsToShow() {
@@ -1976,12 +2006,51 @@
       }
     }
 
+    function autoPlayStories() {
+      const cardsToShow = getCardsToShow();
+      const maxIndex = totalStories - cardsToShow;
+
+      // Move to next group, loop back to start if at end
+      currentStoryIndex = currentStoryIndex + cardsToShow;
+      if (currentStoryIndex > maxIndex) {
+        currentStoryIndex = 0;
+      }
+      updateStoriesCarousel();
+    }
+
+    function startStoriesAutoPlay() {
+      if (storiesAutoPlayInterval) return;
+      storiesAutoPlayInterval = setInterval(autoPlayStories, 1000); // 1 second delay
+    }
+
+    function stopStoriesAutoPlay() {
+      if (storiesAutoPlayInterval) {
+        clearInterval(storiesAutoPlayInterval);
+        storiesAutoPlayInterval = null;
+      }
+    }
+
     // Initialize stories carousel on page load
     if (storiesTrack) {
       updateStoriesCarousel();
 
+      // Start auto-play
+      startStoriesAutoPlay();
+
+      // Pause auto-play on hover
+      const storiesContainer = document.querySelector('.stories-container');
+      if (storiesContainer) {
+        storiesContainer.addEventListener('mouseenter', stopStoriesAutoPlay);
+        storiesContainer.addEventListener('mouseleave', startStoriesAutoPlay);
+      }
+
       // Update on window resize
-      window.addEventListener('resize', updateStoriesCarousel);
+      window.addEventListener('resize', function() {
+        updateStoriesCarousel();
+        // Restart auto-play with new card count
+        stopStoriesAutoPlay();
+        startStoriesAutoPlay();
+      });
     }
 
   </script>
