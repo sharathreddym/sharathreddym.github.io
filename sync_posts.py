@@ -29,17 +29,19 @@ def read_posts_from_file(filename='posts.txt'):
 def generate_posts_html(posts):
     """Generate HTML for LinkedIn posts section"""
     if not posts:
-        return """      <div class="linkedin-posts-grid">
+        return """      <div class="linkedin-posts-container">
         <p style="text-align: center; color: var(--text-muted);">No posts available yet. Add embed codes to posts.txt</p>
       </div>"""
 
-    html_parts = ['      <div class="linkedin-posts-grid">']
+    html_parts = ['      <div class="linkedin-posts-container">']
+    html_parts.append('        <div class="linkedin-posts-grid">')
 
     for post in posts:
-        html_parts.append(f"""        <div class="linkedin-post-wrapper">
-          {post}
-        </div>""")
+        html_parts.append(f"""          <div class="linkedin-post-wrapper">
+            {post}
+          </div>""")
 
+    html_parts.append('        </div>')
     html_parts.append('      </div>')
 
     return '\n'.join(html_parts)
