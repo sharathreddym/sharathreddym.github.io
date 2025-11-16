@@ -1,0 +1,5 @@
+# LinkedIn Posts - Add your embed codes below
+# One iframe embed code per line
+# The script will automatically sync these to index.html
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7394672680484036608" height="1846" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>

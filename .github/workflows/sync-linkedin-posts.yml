@@ -1,0 +1,59 @@
+name: Sync LinkedIn Posts
+
+on:
+  # Run every 2 hours
+  schedule:
+    - cron: '0 */2 * * *'  # Every 2 hours at minute 0
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+  # Run when posts.txt is updated
+  push:
+    paths:
+      - 'posts.txt'
+
+jobs:
+  sync-posts:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run sync script
+        run: python sync_posts.py
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet index.html || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git commit -m "Auto-sync LinkedIn posts from posts.txt [skip ci]"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.check_changes.outputs.changed }}" == "true" ]; then
+            echo "✅ LinkedIn posts synced and committed successfully!"
+          else
+            echo "ℹ️ No changes detected in posts.txt"
+          fi

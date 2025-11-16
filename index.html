@@ -861,10 +861,10 @@
     /* LinkedIn Posts Grid */
     .linkedin-posts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 504px));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2rem;
-      justify-content: center;
-      max-width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .linkedin-post-wrapper {
@@ -876,6 +876,7 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      height: fit-content;
     }
 
     .linkedin-post-wrapper::before {
@@ -902,18 +903,13 @@
 
     .linkedin-post-wrapper iframe {
       width: 100%;
-      height: auto;
-      min-height: 400px;
       border-radius: 12px;
+      display: block;
     }
 
     @media (max-width: 768px) {
       .linkedin-posts-grid {
         grid-template-columns: 1fr;
-      }
-
-      .linkedin-post-wrapper iframe {
-        min-height: 600px;
       }
     }
 
