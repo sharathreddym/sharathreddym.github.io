@@ -858,9 +858,9 @@
       border: none;
     }
 
-    /* LinkedIn Posts Scrollable Container */
+    /* LinkedIn Posts Carousel Container */
     .linkedin-posts-container {
-      max-width: 600px;
+      max-width: 1200px;
       margin: 0 auto;
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-light) 100%);
       border-radius: 20px;
@@ -881,50 +881,32 @@
       background: var(--gradient-2);
     }
 
+    .linkedin-carousel-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     .linkedin-posts-grid {
-      max-height: 300px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding-right: 1rem;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      height: 600px;
     }
 
-    /* Custom scrollbar */
-    .linkedin-posts-grid::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    .linkedin-posts-grid::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-      border-radius: 10px;
-    }
-
-    .linkedin-posts-grid::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #ec4899, #8b5cf6);
-      border-radius: 10px;
-      border: 2px solid var(--bg-dark);
-    }
-
-    .linkedin-posts-grid::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(135deg, #f472b6, #a78bfa);
+    .linkedin-posts-track {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
     }
 
     .linkedin-post-wrapper {
-      margin-bottom: 2rem;
+      min-width: 100%;
       background: var(--bg-dark);
       border-radius: 16px;
       padding: 1rem;
       border: 1px solid rgba(139, 92, 246, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .linkedin-post-wrapper:last-child {
-      margin-bottom: 0;
-    }
-
-    .linkedin-post-wrapper:hover {
-      border-color: rgba(59, 130, 246, 0.5);
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
-      transform: translateX(5px);
+      box-sizing: border-box;
     }
 
     .linkedin-post-wrapper iframe {
@@ -933,14 +915,63 @@
       display: block;
     }
 
-    @media (max-width: 768px) {
-      .linkedin-posts-grid {
-        max-height: 300px;
-        padding-right: 0.5rem;
-      }
+    /* Carousel Navigation Arrows */
+    .carousel-arrow {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.8), rgba(139, 92, 246, 0.8));
+      border: 1px solid rgba(236, 72, 153, 0.5);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      user-select: none;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+    }
 
+    .carousel-arrow:hover {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 1), rgba(139, 92, 246, 1));
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+    }
+
+    .carousel-arrow:active {
+      transform: scale(0.95);
+    }
+
+    .carousel-arrow.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Carousel Counter */
+    .carousel-counter {
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
       .linkedin-posts-container {
         padding: 1rem;
+      }
+
+      .carousel-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+      }
+
+      .linkedin-posts-grid {
+        max-height: 500px;
       }
     }
 
@@ -1116,29 +1147,36 @@
     <section id="posts" class="fade-in">
       <h2 class="section-title">LinkedIn Posts Collection</h2>
       <div class="linkedin-posts-container">
-        <div class="linkedin-posts-grid">
-          <div class="linkedin-post-wrapper">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7394672680484036608" height="1846" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+        <div class="linkedin-carousel-wrapper">
+          <div class="carousel-arrow" id="prevPost" onclick="navigateCarousel(-1)">‹</div>
+          <div class="linkedin-posts-grid">
+            <div class="linkedin-posts-track" id="postsTrack">
+              <div class="linkedin-post-wrapper">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7394672680484036608" height="1846" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+              </div>
+              <div class="linkedin-post-wrapper">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395490321951985665" height="1264" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+              </div>
+              <div class="linkedin-post-wrapper">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395340065079640064" height="1531" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+              </div>
+              <div class="linkedin-post-wrapper">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7391897349817520129" height="1951" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+              </div>
+              <div class="linkedin-post-wrapper">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7391897349817520129" height="1951" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+              </div>
+              <div class="linkedin-post-wrapper">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7394712483950837760" height="1821" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+              </div>
+              <div class="linkedin-post-wrapper">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395357968713637888?collapsed=1" height="670" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+              </div>
+            </div>
           </div>
-          <div class="linkedin-post-wrapper">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395490321951985665" height="1264" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-          </div>
-          <div class="linkedin-post-wrapper">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395340065079640064" height="1531" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-          </div>
-          <div class="linkedin-post-wrapper">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7391897349817520129" height="1951" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-          </div>
-          <div class="linkedin-post-wrapper">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7391897349817520129" height="1951" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-          </div>
-          <div class="linkedin-post-wrapper">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7394712483950837760" height="1821" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-          </div>
-          <div class="linkedin-post-wrapper">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395357968713637888?collapsed=1" height="670" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-          </div>
+          <div class="carousel-arrow" id="nextPost" onclick="navigateCarousel(1)">›</div>
         </div>
+        <div class="carousel-counter" id="carouselCounter">1 / 7</div>
       </div>
     </section>
 
@@ -1606,6 +1644,58 @@
         closeDemoModal();
       }
     });
+
+    // LinkedIn Posts Carousel Navigation
+    let currentPostIndex = 0;
+    const postsTrack = document.getElementById('postsTrack');
+    const prevButton = document.getElementById('prevPost');
+    const nextButton = document.getElementById('nextPost');
+    const carouselCounter = document.getElementById('carouselCounter');
+    const totalPosts = postsTrack ? postsTrack.children.length : 0;
+
+    function updateCarousel() {
+      if (!postsTrack) return;
+
+      // Move the track
+      const translateX = -currentPostIndex * 100;
+      postsTrack.style.transform = `translateX(${translateX}%)`;
+
+      // Update counter
+      if (carouselCounter) {
+        carouselCounter.textContent = `${currentPostIndex + 1} / ${totalPosts}`;
+      }
+
+      // Update arrow states
+      if (prevButton) {
+        prevButton.classList.toggle('disabled', currentPostIndex === 0);
+      }
+      if (nextButton) {
+        nextButton.classList.toggle('disabled', currentPostIndex === totalPosts - 1);
+      }
+    }
+
+    function navigateCarousel(direction) {
+      const newIndex = currentPostIndex + direction;
+
+      if (newIndex >= 0 && newIndex < totalPosts) {
+        currentPostIndex = newIndex;
+        updateCarousel();
+      }
+    }
+
+    // Initialize carousel on page load
+    if (postsTrack) {
+      updateCarousel();
+
+      // Add keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+          navigateCarousel(-1);
+        } else if (e.key === 'ArrowRight') {
+          navigateCarousel(1);
+        }
+      });
+    }
   </script>
 </body>
 </html>

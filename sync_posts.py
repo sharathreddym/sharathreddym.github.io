@@ -27,21 +27,28 @@ def read_posts_from_file(filename='posts.txt'):
         sys.exit(1)
 
 def generate_posts_html(posts):
-    """Generate HTML for LinkedIn posts section"""
+    """Generate HTML for LinkedIn posts carousel"""
     if not posts:
         return """      <div class="linkedin-posts-container">
         <p style="text-align: center; color: var(--text-muted);">No posts available yet. Add embed codes to posts.txt</p>
       </div>"""
 
     html_parts = ['      <div class="linkedin-posts-container">']
-    html_parts.append('        <div class="linkedin-posts-grid">')
+    html_parts.append('        <div class="linkedin-carousel-wrapper">')
+    html_parts.append('          <div class="carousel-arrow" id="prevPost" onclick="navigateCarousel(-1)">‹</div>')
+    html_parts.append('          <div class="linkedin-posts-grid">')
+    html_parts.append('            <div class="linkedin-posts-track" id="postsTrack">')
 
     for post in posts:
-        html_parts.append(f"""          <div class="linkedin-post-wrapper">
-            {post}
-          </div>""")
+        html_parts.append(f"""              <div class="linkedin-post-wrapper">
+                {post}
+              </div>""")
 
+    html_parts.append('            </div>')
+    html_parts.append('          </div>')
+    html_parts.append('          <div class="carousel-arrow" id="nextPost" onclick="navigateCarousel(1)">›</div>')
     html_parts.append('        </div>')
+    html_parts.append(f'        <div class="carousel-counter" id="carouselCounter">1 / {len(posts)}</div>')
     html_parts.append('      </div>')
 
     return '\n'.join(html_parts)
