@@ -1,0 +1,9 @@
+# Medium Stories - Add your Medium story embed codes below
+# One iframe embed code per line or URL per line
+# The script will automatically sync these to index.html
+
+# Example format - You can add either:
+# 1. Medium embed iframe code (preferred)
+# 2. Direct Medium story URL (will be converted to embed)
+
+# Add your Medium story embed codes or URLs here

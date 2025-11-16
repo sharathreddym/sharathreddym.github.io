@@ -1,4 +1,4 @@
-name: Sync LinkedIn Posts
+name: Sync LinkedIn Posts and Medium Stories
 
 on:
   # Run every 2 hours
@@ -8,13 +8,14 @@ on:
   # Allow manual trigger
   workflow_dispatch:
 
-  # Run when posts.txt is updated
+  # Run when posts.txt or stories.txt is updated
   push:
     paths:
       - 'posts.txt'
+      - 'stories.txt'
 
 jobs:
-  sync-posts:
+  sync-content:
     runs-on: ubuntu-latest
 
     permissions:
@@ -31,8 +32,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run sync script
+      - name: Run LinkedIn posts sync script
         run: python sync_posts.py
+
+      - name: Run Medium stories sync script
+        run: python sync_stories.py
 
       - name: Check for changes
         id: check_changes
@@ -45,7 +49,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add index.html
-          git commit -m "Auto-sync LinkedIn posts from posts.txt [skip ci]"
+          git commit -m "Auto-sync LinkedIn posts and Medium stories [skip ci]"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -53,7 +57,7 @@ jobs:
       - name: Summary
         run: |
           if [ "${{ steps.check_changes.outputs.changed }}" == "true" ]; then
-            echo "✅ LinkedIn posts synced and committed successfully!"
+            echo "✅ LinkedIn posts and Medium stories synced and committed successfully!"
           else
-            echo "ℹ️ No changes detected in posts.txt"
+            echo "ℹ️ No changes detected in posts.txt or stories.txt"
           fi

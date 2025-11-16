@@ -999,6 +999,97 @@
       }
     }
 
+    /* Medium Stories Carousel Container */
+    .medium-stories-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-light) 100%);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .medium-stories-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-3);
+    }
+
+    .medium-carousel-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .medium-stories-grid {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      height: 600px;
+    }
+
+    .medium-stories-track {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+      height: 100%;
+    }
+
+    .medium-story-wrapper {
+      min-width: 100%;
+      background: var(--bg-dark);
+      border-radius: 16px;
+      padding: 1rem;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      box-sizing: border-box;
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    /* Custom scrollbar for Medium stories */
+    .medium-story-wrapper::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .medium-story-wrapper::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+      border-radius: 10px;
+    }
+
+    .medium-story-wrapper::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      border-radius: 10px;
+      border: 2px solid var(--bg-dark);
+    }
+
+    .medium-story-wrapper::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #a78bfa, #f472b6);
+    }
+
+    .medium-story-wrapper iframe {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .medium-stories-container {
+        padding: 1rem;
+      }
+
+      .medium-stories-grid {
+        max-height: 500px;
+      }
+    }
+
     /* Demo Card Styles */
     .demo-card {
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-light) 100%);
@@ -1108,6 +1199,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#demos">AI Demos</a></li>
           <li><a href="#posts">Posts</a></li>
+          <li><a href="#stories">Stories</a></li>
           <li><a href="#projects">Research</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#experience">Experience</a></li>
@@ -1201,6 +1293,14 @@
           <div class="carousel-arrow" id="nextPost" onclick="navigateCarousel(1)">›</div>
         </div>
         <div class="carousel-counter" id="carouselCounter">1 / 7</div>
+      </div>
+    </section>
+
+    <!-- Medium Stories Section -->
+    <section id="stories" class="fade-in">
+      <h2 class="section-title">Medium Stories Collection</h2>
+      <div class="medium-stories-container">
+        <p style="text-align: center; color: var(--text-muted);">No stories available yet. Add Medium story embed codes to stories.txt</p>
       </div>
     </section>
 
@@ -1719,6 +1819,49 @@
           navigateCarousel(1);
         }
       });
+    }
+
+    // Medium Stories Carousel Navigation
+    let currentStoryIndex = 0;
+    const storiesTrack = document.getElementById('storiesTrack');
+    const prevStoryButton = document.getElementById('prevStory');
+    const nextStoryButton = document.getElementById('nextStory');
+    const storiesCarouselCounter = document.getElementById('storiesCarouselCounter');
+    const totalStories = storiesTrack ? storiesTrack.children.length : 0;
+
+    function updateStoriesCarousel() {
+      if (!storiesTrack) return;
+
+      // Move the track
+      const translateX = -currentStoryIndex * 100;
+      storiesTrack.style.transform = `translateX(${translateX}%)`;
+
+      // Update counter
+      if (storiesCarouselCounter) {
+        storiesCarouselCounter.textContent = `${currentStoryIndex + 1} / ${totalStories}`;
+      }
+
+      // Update arrow states
+      if (prevStoryButton) {
+        prevStoryButton.classList.toggle('disabled', currentStoryIndex === 0);
+      }
+      if (nextStoryButton) {
+        nextStoryButton.classList.toggle('disabled', currentStoryIndex === totalStories - 1);
+      }
+    }
+
+    function navigateStoriesCarousel(direction) {
+      const newIndex = currentStoryIndex + direction;
+
+      if (newIndex >= 0 && newIndex < totalStories) {
+        currentStoryIndex = newIndex;
+        updateStoriesCarousel();
+      }
+    }
+
+    // Initialize stories carousel on page load
+    if (storiesTrack) {
+      updateStoriesCarousel();
     }
   </script>
 </body>
