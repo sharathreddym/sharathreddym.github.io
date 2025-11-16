@@ -898,6 +898,7 @@
     .linkedin-posts-track {
       display: flex;
       transition: transform 0.4s ease-in-out;
+      height: 100%;
     }
 
     .linkedin-post-wrapper {
@@ -907,6 +908,29 @@
       padding: 1rem;
       border: 1px solid rgba(139, 92, 246, 0.2);
       box-sizing: border-box;
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    /* Custom scrollbar for posts */
+    .linkedin-post-wrapper::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .linkedin-post-wrapper::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+      border-radius: 10px;
+    }
+
+    .linkedin-post-wrapper::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      border-radius: 10px;
+      border: 2px solid var(--bg-dark);
+    }
+
+    .linkedin-post-wrapper::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #f472b6, #a78bfa);
     }
 
     .linkedin-post-wrapper iframe {
