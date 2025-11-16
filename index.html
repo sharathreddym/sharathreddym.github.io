@@ -1038,8 +1038,21 @@
 
     .stories-track {
       display: flex;
-      transition: transform 0.4s ease-in-out;
       gap: 2rem;
+      animation: continuousScroll 30s linear infinite;
+    }
+
+    .stories-track.paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes continuousScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     .story-card-wrapper {
@@ -1326,7 +1339,6 @@
       <h2 class="section-title">Medium Stories Collection</h2>
       <div class="stories-container">
         <div class="stories-carousel-wrapper">
-          <div class="carousel-arrow" id="prevStory" onclick="navigateStoriesCarousel(-1)">‹</div>
           <div class="stories-grid">
             <div class="stories-track" id="storiesTrack">
               <div class="story-card-wrapper">
@@ -1401,11 +1413,81 @@
                   </div>
                 </a>
               </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/gitconnected/a-complete-guide-to-the-openai-agents-sdk-dd3aac41a48d" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>A Complete Guide To The Openai Agents Sdk</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/@equinoxailab/abstractive-question-answering-system-ca5e3053a237" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>Abstractive Question Answering System</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/ai-advances/i-built-a-team-of-ai-agents-to-plan-my-trips-heres-how-it-works-101a84e5436d" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>I Built A Team Of Ai Agents To Plan My Trips Heres How It Works</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/google-cloud/agentic-ai-building-a-multi-agent-ai-travel-planner-using-gemini-llm-crew-ai-6d2e93f72008" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>Agentic Ai Building A Multi Agent Ai Travel Planner Using Gemini Llm Crew Ai</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/data-science/building-a-multilingual-multi-agent-chat-application-using-langgraph-i-262d40df6b4f" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>Building A Multilingual Multi Agent Chat Application Using Langgraph I</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/vectrix-ai/how-to-implement-a-react-flow-using-langgraph-studio-5e4b859b5506" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>How To Implement A React Flow Using Langgraph Studio</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/@devalshah1619/mathematical-intuition-behind-reciprocal-rank-fusion-rrf-explained-in-2-mins-002df0cc5e2a" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>Mathematical Intuition Behind Reciprocal Rank Fusion Rrf Explained In 2 Mins</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/prompt-engineering/hyde-revolutionising-search-with-hypothetical-document-embeddings-3474df795af8" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>Hyde Revolutionising Search With Hypothetical Document Embeddings</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
+              <div class="story-card-wrapper">
+                <a href="https://medium.com/@khiljidanial/cosine-similarity-using-gpt-models-35b6b9685d70" target="_blank" rel="noopener" class="story-card-link">
+                  <div class="story-card">
+                    <h3>Cosine Similarity Using Gpt Models</h3>
+                    <p>Read on Medium →</p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
-          <div class="carousel-arrow" id="nextStory" onclick="navigateStoriesCarousel(1)">›</div>
         </div>
-        <div class="carousel-counter" id="storiesCarouselCounter">1 / 9</div>
       </div>
     </section>
 
@@ -1921,7 +2003,7 @@
 
     function startPostsAutoPlay() {
       if (postsAutoPlayInterval) return;
-      postsAutoPlayInterval = setInterval(autoPlayPosts, 1000); // 1 second delay
+      postsAutoPlayInterval = setInterval(autoPlayPosts, 3000); // 3 seconds delay
     }
 
     function stopPostsAutoPlay() {
@@ -1955,101 +2037,18 @@
       });
     }
 
-    // Medium Stories Carousel Navigation
-    let currentStoryIndex = 0;
+    // Medium Stories Continuous Scroll
     const storiesTrack = document.getElementById('storiesTrack');
-    const prevStoryButton = document.getElementById('prevStory');
-    const nextStoryButton = document.getElementById('nextStory');
-    const storiesCarouselCounter = document.getElementById('storiesCarouselCounter');
-    const totalStories = storiesTrack ? storiesTrack.children.length : 0;
-    let storiesAutoPlayInterval = null;
+    const storiesContainer = document.querySelector('.stories-container');
 
-    // Calculate how many cards to show at once (3 on desktop, 1 on mobile)
-    function getCardsToShow() {
-      return window.innerWidth <= 768 ? 1 : 3;
-    }
+    // Pause continuous scroll animation on hover
+    if (storiesContainer && storiesTrack) {
+      storiesContainer.addEventListener('mouseenter', function() {
+        storiesTrack.classList.add('paused');
+      });
 
-    function updateStoriesCarousel() {
-      if (!storiesTrack) return;
-
-      const cardsToShow = getCardsToShow();
-      const cardWidth = 100 / cardsToShow; // Each card takes up this percentage
-      const translateX = -currentStoryIndex * cardWidth;
-      storiesTrack.style.transform = `translateX(${translateX}%)`;
-
-      // Update counter - show current group out of total groups
-      const currentGroup = Math.floor(currentStoryIndex / cardsToShow) + 1;
-      const totalGroups = Math.ceil(totalStories / cardsToShow);
-
-      if (storiesCarouselCounter) {
-        storiesCarouselCounter.textContent = `${currentGroup} / ${totalGroups}`;
-      }
-
-      // Update arrow states
-      const maxIndex = totalStories - cardsToShow;
-      if (prevStoryButton) {
-        prevStoryButton.classList.toggle('disabled', currentStoryIndex === 0);
-      }
-      if (nextStoryButton) {
-        nextStoryButton.classList.toggle('disabled', currentStoryIndex >= maxIndex);
-      }
-    }
-
-    function navigateStoriesCarousel(direction) {
-      const cardsToShow = getCardsToShow();
-      const maxIndex = totalStories - cardsToShow;
-      const newIndex = currentStoryIndex + (direction * cardsToShow);
-
-      if (newIndex >= 0 && newIndex <= maxIndex) {
-        currentStoryIndex = newIndex;
-        updateStoriesCarousel();
-      }
-    }
-
-    function autoPlayStories() {
-      const cardsToShow = getCardsToShow();
-      const maxIndex = totalStories - cardsToShow;
-
-      // Move to next group, loop back to start if at end
-      currentStoryIndex = currentStoryIndex + cardsToShow;
-      if (currentStoryIndex > maxIndex) {
-        currentStoryIndex = 0;
-      }
-      updateStoriesCarousel();
-    }
-
-    function startStoriesAutoPlay() {
-      if (storiesAutoPlayInterval) return;
-      storiesAutoPlayInterval = setInterval(autoPlayStories, 1000); // 1 second delay
-    }
-
-    function stopStoriesAutoPlay() {
-      if (storiesAutoPlayInterval) {
-        clearInterval(storiesAutoPlayInterval);
-        storiesAutoPlayInterval = null;
-      }
-    }
-
-    // Initialize stories carousel on page load
-    if (storiesTrack) {
-      updateStoriesCarousel();
-
-      // Start auto-play
-      startStoriesAutoPlay();
-
-      // Pause auto-play on hover
-      const storiesContainer = document.querySelector('.stories-container');
-      if (storiesContainer) {
-        storiesContainer.addEventListener('mouseenter', stopStoriesAutoPlay);
-        storiesContainer.addEventListener('mouseleave', startStoriesAutoPlay);
-      }
-
-      // Update on window resize
-      window.addEventListener('resize', function() {
-        updateStoriesCarousel();
-        // Restart auto-play with new card count
-        stopStoriesAutoPlay();
-        startStoriesAutoPlay();
+      storiesContainer.addEventListener('mouseleave', function() {
+        storiesTrack.classList.remove('paused');
       });
     }
 
