@@ -999,20 +999,35 @@
       }
     }
 
-    /* Medium Stories Carousel Container */
-    .medium-stories-container {
-      max-width: 1200px;
-      margin: 0 auto;
+    /* Medium Stories Grid */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .story-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .story-card {
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-light) 100%);
       border-radius: 20px;
       padding: 2rem;
-      border: 1px solid rgba(139, 92, 246, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       position: relative;
       overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      cursor: pointer;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .medium-stories-container::before {
+    .story-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -1020,74 +1035,31 @@
       right: 0;
       height: 4px;
       background: var(--gradient-3);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
     }
 
-    .medium-carousel-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .story-card:hover::before {
+      transform: scaleX(1);
     }
 
-    .medium-stories-grid {
-      flex: 1;
-      overflow: hidden;
-      position: relative;
-      height: 600px;
+    .story-card:hover {
+      transform: translateY(-10px) rotateX(5deg);
+      background: linear-gradient(135deg, var(--bg-card-light) 0%, var(--bg-card) 100%);
+      box-shadow: var(--shadow-purple);
+      border-color: rgba(139, 92, 246, 0.5);
     }
 
-    .medium-stories-track {
-      display: flex;
-      transition: transform 0.4s ease-in-out;
-      height: 100%;
+    .story-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
     }
 
-    .medium-story-wrapper {
-      min-width: 100%;
-      background: var(--bg-dark);
-      border-radius: 16px;
-      padding: 1rem;
-      border: 1px solid rgba(139, 92, 246, 0.2);
-      box-sizing: border-box;
-      overflow-y: auto;
-      overflow-x: hidden;
-      height: 100%;
-    }
-
-    /* Custom scrollbar for Medium stories */
-    .medium-story-wrapper::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    .medium-story-wrapper::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-      border-radius: 10px;
-    }
-
-    .medium-story-wrapper::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #8b5cf6, #ec4899);
-      border-radius: 10px;
-      border: 2px solid var(--bg-dark);
-    }
-
-    .medium-story-wrapper::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(135deg, #a78bfa, #f472b6);
-    }
-
-    .medium-story-wrapper iframe {
-      width: 100%;
-      border-radius: 12px;
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      .medium-stories-container {
-        padding: 1rem;
-      }
-
-      .medium-stories-grid {
-        max-height: 500px;
-      }
+    .story-card p {
+      color: #a78bfa;
+      font-weight: 500;
+      font-size: 0.95rem;
     }
 
     /* Demo Card Styles */
@@ -1299,43 +1271,61 @@
     <!-- Medium Stories Section -->
     <section id="stories" class="fade-in">
       <h2 class="section-title">Medium Stories Collection</h2>
-      <div class="medium-stories-container">
-        <div class="medium-carousel-wrapper">
-          <div class="carousel-arrow" id="prevStory" onclick="navigateStoriesCarousel(-1)">‹</div>
-          <div class="medium-stories-grid">
-            <div class="medium-stories-track" id="storiesTrack">
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/gitconnected/a-complete-guide-to-the-openai-agents-sdk-dd3aac41a48d" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/@equinoxailab/abstractive-question-answering-system-ca5e3053a237" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/ai-advances/i-built-a-team-of-ai-agents-to-plan-my-trips-heres-how-it-works-101a84e5436d" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/google-cloud/agentic-ai-building-a-multi-agent-ai-travel-planner-using-gemini-llm-crew-ai-6d2e93f72008" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/data-science/building-a-multilingual-multi-agent-chat-application-using-langgraph-i-262d40df6b4f" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/vectrix-ai/how-to-implement-a-react-flow-using-langgraph-studio-5e4b859b5506" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/@devalshah1619/mathematical-intuition-behind-reciprocal-rank-fusion-rrf-explained-in-2-mins-002df0cc5e2a" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/prompt-engineering/hyde-revolutionising-search-with-hypothetical-document-embeddings-3474df795af8" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-              <div class="medium-story-wrapper">
-                <iframe src="https://medium.com/@khiljidanial/cosine-similarity-using-gpt-models-35b6b9685d70" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>
-              </div>
-            </div>
+      <div class="stories-grid">
+        <a href="https://medium.com/gitconnected/a-complete-guide-to-the-openai-agents-sdk-dd3aac41a48d" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>A Complete Guide To The Openai Agents Sdk</h3>
+            <p>Read on Medium →</p>
           </div>
-          <div class="carousel-arrow" id="nextStory" onclick="navigateStoriesCarousel(1)">›</div>
-        </div>
-        <div class="carousel-counter" id="storiesCarouselCounter">1 / 9</div>
+        </a>
+        <a href="https://medium.com/@equinoxailab/abstractive-question-answering-system-ca5e3053a237" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>Abstractive Question Answering System</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>
+        <a href="https://medium.com/ai-advances/i-built-a-team-of-ai-agents-to-plan-my-trips-heres-how-it-works-101a84e5436d" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>I Built A Team Of Ai Agents To Plan My Trips Heres How It Works</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>
+        <a href="https://medium.com/google-cloud/agentic-ai-building-a-multi-agent-ai-travel-planner-using-gemini-llm-crew-ai-6d2e93f72008" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>Agentic Ai Building A Multi Agent Ai Travel Planner Using Gemini Llm Crew Ai</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>
+        <a href="https://medium.com/data-science/building-a-multilingual-multi-agent-chat-application-using-langgraph-i-262d40df6b4f" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>Building A Multilingual Multi Agent Chat Application Using Langgraph I</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>
+        <a href="https://medium.com/vectrix-ai/how-to-implement-a-react-flow-using-langgraph-studio-5e4b859b5506" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>How To Implement A React Flow Using Langgraph Studio</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>
+        <a href="https://medium.com/@devalshah1619/mathematical-intuition-behind-reciprocal-rank-fusion-rrf-explained-in-2-mins-002df0cc5e2a" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>Mathematical Intuition Behind Reciprocal Rank Fusion Rrf Explained In 2 Mins</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>
+        <a href="https://medium.com/prompt-engineering/hyde-revolutionising-search-with-hypothetical-document-embeddings-3474df795af8" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>Hyde Revolutionising Search With Hypothetical Document Embeddings</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>
+        <a href="https://medium.com/@khiljidanial/cosine-similarity-using-gpt-models-35b6b9685d70" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>Cosine Similarity Using Gpt Models</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -1856,48 +1846,6 @@
       });
     }
 
-    // Medium Stories Carousel Navigation
-    let currentStoryIndex = 0;
-    const storiesTrack = document.getElementById('storiesTrack');
-    const prevStoryButton = document.getElementById('prevStory');
-    const nextStoryButton = document.getElementById('nextStory');
-    const storiesCarouselCounter = document.getElementById('storiesCarouselCounter');
-    const totalStories = storiesTrack ? storiesTrack.children.length : 0;
-
-    function updateStoriesCarousel() {
-      if (!storiesTrack) return;
-
-      // Move the track
-      const translateX = -currentStoryIndex * 100;
-      storiesTrack.style.transform = `translateX(${translateX}%)`;
-
-      // Update counter
-      if (storiesCarouselCounter) {
-        storiesCarouselCounter.textContent = `${currentStoryIndex + 1} / ${totalStories}`;
-      }
-
-      // Update arrow states
-      if (prevStoryButton) {
-        prevStoryButton.classList.toggle('disabled', currentStoryIndex === 0);
-      }
-      if (nextStoryButton) {
-        nextStoryButton.classList.toggle('disabled', currentStoryIndex === totalStories - 1);
-      }
-    }
-
-    function navigateStoriesCarousel(direction) {
-      const newIndex = currentStoryIndex + direction;
-
-      if (newIndex >= 0 && newIndex < totalStories) {
-        currentStoryIndex = newIndex;
-        updateStoriesCarousel();
-      }
-    }
-
-    // Initialize stories carousel on page load
-    if (storiesTrack) {
-      updateStoriesCarousel();
-    }
   </script>
 </body>
 </html>

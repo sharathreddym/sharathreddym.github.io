@@ -1,32 +1,45 @@
 #!/usr/bin/env python3
 """
 Medium Stories Sync Script
-Reads embed codes from stories.txt and updates index.html
+Reads Medium URLs from stories.txt and creates clickable cards in index.html
 """
 
 import re
 import sys
 from datetime import datetime
 
+def extract_title_from_url(url):
+    """Extract and format title from Medium URL"""
+    # Get the slug (last part of URL path before hash)
+    # Example: https://medium.com/gitconnected/a-complete-guide-to-the-openai-agents-sdk-dd3aac41a48d
+    # -> a-complete-guide-to-the-openai-agents-sdk-dd3aac41a48d
+
+    slug = url.rstrip('/').split('/')[-1]
+
+    # Remove the hash at the end (alphanumeric string after last hyphen)
+    # Pattern: ends with hyphen followed by alphanumeric characters
+    slug = re.sub(r'-[a-f0-9]{10,}$', '', slug)
+
+    # Convert hyphens to spaces and title case
+    title = slug.replace('-', ' ').title()
+
+    return title
+
 def read_stories_from_file(filename='stories.txt'):
-    """Read iframe embed codes or URLs from stories.txt"""
+    """Read Medium URLs from stories.txt and extract titles"""
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             lines = f.readlines()
 
-        # Filter out comments and empty lines, convert URLs to embeds
+        # Filter out comments and empty lines
         stories = []
         for line in lines:
             line = line.strip()
             if line and not line.startswith('#'):
-                # If it's a Medium URL, convert to embed iframe
+                # Extract title from URL
                 if line.startswith('http') and 'medium.com' in line:
-                    # Medium embed format
-                    iframe = f'<iframe src="{line}" width="680" height="500" frameborder="0" scrolling="yes" style="border:none;"></iframe>'
-                    stories.append(iframe)
-                else:
-                    # Already an iframe embed code
-                    stories.append(line)
+                    title = extract_title_from_url(line)
+                    stories.append({'title': title, 'url': line})
 
         return stories
     except FileNotFoundError:
@@ -34,28 +47,22 @@ def read_stories_from_file(filename='stories.txt'):
         sys.exit(1)
 
 def generate_stories_html(stories):
-    """Generate HTML for Medium stories carousel"""
+    """Generate HTML for Medium stories as clickable cards"""
     if not stories:
-        return """      <div class="medium-stories-container">
-        <p style="text-align: center; color: var(--text-muted);">No stories available yet. Add Medium story embed codes to stories.txt</p>
+        return """      <div class="stories-grid">
+        <p style="text-align: center; color: var(--text-muted);">No stories available yet. Add Medium URLs to stories.txt</p>
       </div>"""
 
-    html_parts = ['      <div class="medium-stories-container">']
-    html_parts.append('        <div class="medium-carousel-wrapper">')
-    html_parts.append('          <div class="carousel-arrow" id="prevStory" onclick="navigateStoriesCarousel(-1)">‹</div>')
-    html_parts.append('          <div class="medium-stories-grid">')
-    html_parts.append('            <div class="medium-stories-track" id="storiesTrack">')
+    html_parts = ['      <div class="stories-grid">']
 
     for story in stories:
-        html_parts.append(f"""              <div class="medium-story-wrapper">
-                {story}
-              </div>""")
+        html_parts.append(f"""        <a href="{story['url']}" target="_blank" rel="noopener" class="story-card-link">
+          <div class="story-card">
+            <h3>{story['title']}</h3>
+            <p>Read on Medium →</p>
+          </div>
+        </a>""")
 
-    html_parts.append('            </div>')
-    html_parts.append('          </div>')
-    html_parts.append('          <div class="carousel-arrow" id="nextStory" onclick="navigateStoriesCarousel(1)">›</div>')
-    html_parts.append('        </div>')
-    html_parts.append(f'        <div class="carousel-counter" id="storiesCarouselCounter">1 / {len(stories)}</div>')
     html_parts.append('      </div>')
 
     return '\n'.join(html_parts)
