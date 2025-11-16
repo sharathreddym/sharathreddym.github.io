@@ -7,3 +7,12 @@
 # 2. Direct Medium story URL (will be converted to embed)
 
 # Add your Medium story embed codes or URLs here
+https://medium.com/gitconnected/a-complete-guide-to-the-openai-agents-sdk-dd3aac41a48d
+https://medium.com/@equinoxailab/abstractive-question-answering-system-ca5e3053a237
+https://medium.com/ai-advances/i-built-a-team-of-ai-agents-to-plan-my-trips-heres-how-it-works-101a84e5436d
+https://medium.com/google-cloud/agentic-ai-building-a-multi-agent-ai-travel-planner-using-gemini-llm-crew-ai-6d2e93f72008
+https://medium.com/data-science/building-a-multilingual-multi-agent-chat-application-using-langgraph-i-262d40df6b4f
+https://medium.com/vectrix-ai/how-to-implement-a-react-flow-using-langgraph-studio-5e4b859b5506
+https://medium.com/@devalshah1619/mathematical-intuition-behind-reciprocal-rank-fusion-rrf-explained-in-2-mins-002df0cc5e2a
+https://medium.com/prompt-engineering/hyde-revolutionising-search-with-hypothetical-document-embeddings-3474df795af8
+https://medium.com/@khiljidanial/cosine-similarity-using-gpt-models-35b6b9685d70
