@@ -53,7 +53,7 @@ def update_index_html(posts_html, filename='index.html'):
             content = f.read()
 
         # Define markers for the LinkedIn posts section
-        start_marker = '    <!-- LinkedIn Posts Section -->\n    <section id="posts" class="fade-in">\n      <h2 class="section-title">LinkedIn Posts</h2>\n'
+        start_marker = '    <!-- LinkedIn Posts Section -->\n    <section id="posts" class="fade-in">\n      <h2 class="section-title">LinkedIn Posts Collection</h2>\n'
         end_marker = '    </section>\n\n    <!-- Projects Section -->'
 
         # Find the section
