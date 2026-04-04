@@ -1,11 +1,14 @@
-# LinkedIn Posts - Add your embed codes below
+# LinkedIn Posts - Sourced from LinkedMash bookmarks
 # One iframe embed code per line
-# The script will automatically sync these to index.html
+# Last synced: 2026-04-04
 
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7394672680484036608" height="1846" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395490321951985665" height="1264" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395340065079640064" height="1531" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7391897349817520129" height="1951" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7391897349817520129" height="1951" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7394712483950837760" height="1821" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7395357968713637888?collapsed=1" height="670" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7445356886658568192" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7445105982097223680" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7445088819709820928" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7445076691380518912" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7444888766722252800" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7444775538470281217" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7444707812565409792" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7444702124799791104" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7444663672951447552" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7444641216866197505" height="800" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
